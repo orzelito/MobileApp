@@ -13,8 +13,23 @@
 					<DataTemplate>
 						<Border Stroke="Gray" Padding="10" Margin="5">
 							<VerticalStackLayout>
-								<Label Text="{Binding Id}" FontAttributes="Bold"/>
-								<Label Text="{Binding Status}" />
+
+								<Label Text="{Binding Id, StringFormat='Order ID: {0}'}" FontAttributes="Bold"/>
+
+								<Label Text="{Binding Status, StringFormat='Order status: {0}'}" />
+
+								<Label Text="{Binding CreatedAt, StringFormat='Date of order: {0}'}" FontSize="12" />
+
+								<CollectionView ItemsSource="{Binding Items}">
+									<CollectionView.ItemTemplate>
+										<DataTemplate>
+											<HorizontalStackLayout Spacing="10">
+												<Label Text="{Binding Quantity, StringFormat='x{0}'}"/>
+												<Label Text="{Binding Name}"/>
+											</HorizontalStackLayout>
+										</DataTemplate>
+									</CollectionView.ItemTemplate>
+								</CollectionView>
 							</VerticalStackLayout>
 						</Border>
 					</DataTemplate>
