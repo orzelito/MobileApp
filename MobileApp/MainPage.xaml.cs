@@ -1,24 +1,20 @@
-﻿namespace MobileApp
+﻿using MobileApp.Services;
+
+namespace MobileApp;
+
+public partial class MainPage : ContentPage
 {
-	public partial class MainPage : ContentPage
+	private readonly ApiService _apiService;
+
+	public MainPage()
 	{
-		int count = 0;
+		InitializeComponent();
+		_apiService = new ApiService();
+	}
 
-		public MainPage()
-		{
-			InitializeComponent();
-		}
-
-		private void OnCounterClicked(object? sender, EventArgs e)
-		{
-			count++;
-
-			if (count == 1)
-				CounterBtn.Text = $"Clicked {count} time";
-			else
-				CounterBtn.Text = $"Clicked {count} times";
-
-			SemanticScreenReader.Announce(CounterBtn.Text);
-		}
+	private async void OnRefreshClicked(object sender, EventArgs e)
+	{
+		var orders = await _apiService.GetOrders();
+		OrdersList.ItemsSource = orders;
 	}
 }

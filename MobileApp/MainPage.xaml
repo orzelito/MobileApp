@@ -8,7 +8,7 @@
 			<Label Text="Zamówienia" FontSize="24"/>
 			<Button Text="Odśwież" Clicked="OnRefreshClicked"/>
 
-			<CollectionView x:Name="OrderList">
+			<CollectionView x:Name="OrdersList">
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<Border Stroke="Gray" Padding="10" Margin="5">
